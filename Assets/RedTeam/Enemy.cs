@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +18,14 @@ public class Enemy : MonoBehaviour
        
  
     }
-private void OnTriggerEnter (Collider Collision){
-
-if (Collision.CompareTag("player")){
-    Collision.GetComponent<Player>().GameOver();
-}
+private void OnCollisionEnter(Collision collision)
+{
+    if( collision.gameObject.tag == "Player" )
+    {
+        Destroy(collision.gameObject);
+        SceneManager.LoadScene(0);
 
     }
+}
     
 }
